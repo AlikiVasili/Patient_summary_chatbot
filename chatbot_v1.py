@@ -33,13 +33,13 @@ def find_allergy_category(user_input, category_keywords):
 script_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(script_dir, 'bio_bert_classifier.pth')
 # Load the saved model
-model = BERTClassifier(bert_model_name='dmis-lab/biobert-v1.1', num_classes=11)  # Initialize the model
+model = BERTClassifier(bert_model_name='dmis-lab/biobert-v1.1', num_classes=12)  # Initialize the model
 model.load_state_dict(torch.load(model_path))  # Load the saved model weights
 
 # Create a dictionary to map class indices to intent labels
 # the encoding is alphabetic 
-class_to_intent = {0: 'allergies',1: 'current_problems', 2: 'feeling', 3: 'hello',4: 'illness_history', 5: 'implants', 6: 'info', 7: 'intolerances', 8: 'prescription'
-                   ,9: 'surgery', 10: 'vaccination'}
+class_to_intent = {0: 'allergies',1: 'current_problems', 2: 'exit',3: 'feeling', 4: 'hello',5: 'illness_history', 6: 'implants', 7: 'info', 8: 'intolerances', 9: 'prescription'
+                   ,10: 'surgery', 11: 'vaccination'}
 
 # Initialize the tokenizer
 tokenizer = AutoTokenizer.from_pretrained('dmis-lab/biobert-v1.1')
@@ -185,12 +185,12 @@ while True:
                 # check if the user asked for a specific category
                 # Define category keywords
                 allergy_category_keywords = {
-                    "Drug allergy": ["drug", "drugs"],
-                    "Food allergy": ["food", "foods"],
-                    "Allergy to substance": ["substance", "substances"]
+                    "drug": ["drug", "drugs"],
+                    "food": ["food", "foods"],
+                    "substance": ["substance", "substances"]
                 }
                 category = find_allergy_category(user_input, allergy_category_keywords)
-                print(category)
+                # print(category)
 
                 # print the list of the allergies
                 result = subprocess.run(['python', 'get_allergies.py'], capture_output=True, text=True)
@@ -200,28 +200,35 @@ while True:
                     # Safely evaluate the string as a literal to convert it to a list of dictionaries
                     allergies = ast.literal_eval(result.stdout)
 
-                    # Iterate through the entries and print only the 'agent'
-                    i = 1
-                    print("\nYou have the following allergies:")
-                    for entry in allergies:
-                        if entry['type'] == "allergy":
-                            if entry['reaction'] == "No Reaction":
-                                print(f"{i}. {entry['type_description']} in {entry['agent']} (Clinical status: {entry['clinical_status']})")
-                                i = i + 1
-                            else:
-                                print(f"{i}. {entry['type_description']} in {entry['agent']}, Reaction: {entry['reaction']} (Clinical status: {entry['clinical_status']})")
-                                i = i + 1
-                    i = 1
-                    print("\nYou have the following intolerances:")
-                    for entry in allergies:
-                        if entry['type'] == "intolerance":
-                            if entry['reaction'] == "No Reaction":
-                                print(f"{i}. {entry['type_description']} in {entry['agent']} (Clinical status: {entry['clinical_status']})")
-                                i = i + 1
-                            else:
-                                print(f"{i}. {entry['type_description']} in {entry['agent']}, Reaction: {entry['reaction']} (Clinical status: {entry['clinical_status']})")
-                                i = i + 1
-                    print("")
+                    # Filter allergies based on the recognized category
+                    if category is not None:
+                        allergies = [entry for entry in allergies if category.lower() in entry['agent'].lower()]
+
+                    if not allergies:
+                        print(f"\nYou have no allergies in the category '{category}'.\n")
+                    else:
+                        # Iterate through the entries and print only the 'agent'
+                        i = 1
+                        print("\nYou have the following allergies:")
+                        for entry in allergies:
+                            if entry['type'] == "allergy":
+                                if entry['reaction'] == "No Reaction":
+                                    print(f"{i}. {entry['type_description']} in {entry['agent']} (Clinical status: {entry['clinical_status']})")
+                                    i = i + 1
+                                else:
+                                    print(f"{i}. {entry['type_description']} in {entry['agent']}, Reaction: {entry['reaction']} (Clinical status: {entry['clinical_status']})")
+                                    i = i + 1
+                        i = 1
+                        print("\nYou have the following intolerances:")
+                        for entry in allergies:
+                            if entry['type'] == "intolerance":
+                                if entry['reaction'] == "No Reaction":
+                                    print(f"{i}. {entry['type_description']} in {entry['agent']} (Clinical status: {entry['clinical_status']})")
+                                    i = i + 1
+                                else:
+                                    print(f"{i}. {entry['type_description']} in {entry['agent']}, Reaction: {entry['reaction']} (Clinical status: {entry['clinical_status']})")
+                                    i = i + 1
+                        print("")
                 else:
                     # Print an error message
                     print("Error occurred while running the script.")
@@ -414,6 +421,9 @@ while True:
                     print("Error occurred while running the script.")
                     print("Error message:", result.stderr)
 
+            elif predicted_intent == 'exit':
+                print("CareSnap: I hope that i was helpful! Bye bye!")
+                exit(1)
             else:
                 # Handle the case when there is no classified intent
                 if no_inent_class != None:
