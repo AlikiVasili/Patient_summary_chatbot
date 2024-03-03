@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Container for Chatbot Icon and Chat Container -->
+    <div id="chat-container-wrapper"
+        style="position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column-reverse; align-items: flex-end;">
+
+        <!-- Chat Container -->
+        <div id="chat-container"
+            style="display: none; max-width: 400px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); overflow: hidden; border-radius: 8px; z-index: 1;">
+            <div id="chat-history"></div>
+            <form id="user-input-form">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button type="button" onclick="sendMessage()">Send</button>
+            </form>
+        </div>
+
+        <!-- Chatbot Icon -->
+        <div id="chat-icon" style="cursor: pointer; font-size: 24px; z-index: 2;" onclick="toggleChat()">
+            🗨️ <!-- You can replace this with an actual chat bubble icon or an image -->
+        </div>
+
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.style.display = (chatContainer.style.display === 'none' || chatContainer.style.display === '') ? 'block' : 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Display welcome message
+            const chatHistory = document.getElementById('chat-history');
+            const welcomeMessageDiv = document.createElement('div');
+            welcomeMessageDiv.className = 'message bot-message';
+            welcomeMessageDiv.innerHTML = `<div class="bubble">Welcome I am CareSnap, a chatbot that supports Patient Summary and e-Prescription! Do you want to log in? (yes/no)</div>`;
+            chatHistory.appendChild(welcomeMessageDiv);
+        });
+
+        function sendMessage() {
+            const userMessage = document.getElementById('user-input').value;
+            if (userMessage.trim() === '') {
+                return;
+            }
+
+            // Display user message
+            const chatHistory = document.getElementById('chat-history');
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message user-message';
+            userMessageDiv.innerHTML = `<div class="bubble">${userMessage}</div>`;
+            chatHistory.appendChild(userMessageDiv);
+
+            <!-- Display loading animation -->
+            const loadingMessageDiv = document.createElement('div');
+            loadingMessageDiv.className = 'message bot-message';
+            loadingMessageDiv.innerHTML = `<div class="loading-animation"></div>`;
+            chatHistory.appendChild(loadingMessageDiv);
+
+            // Add a slight delay to ensure the loading animation is displayed
+            setTimeout(() => {
+                // Make AJAX request to Flask server
+                fetch('http://127.0.0.1:5000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({ 'message': userMessage }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Remove loading animation
+                        chatHistory.removeChild(loadingMessageDiv);
+
+                        // Display bot response
+                        const botMessageDiv = document.createElement('div');
+                        botMessageDiv.className = 'message bot-message';
+                        botMessageDiv.innerHTML = `<div class="bubble">${data.response}</div>`;
+                        chatHistory.appendChild(botMessageDiv);
+
+                        // Scroll to the bottom to show the latest messages
+                        chatHistory.scrollTop = chatHistory.scrollHeight;
+                    })
+                    .catch(error => {
+                        // Remove loading animation on error
+                        chatHistory.removeChild(loadingMessageDiv);
+
+                        console.error('Error:', error);
+                    });
+            }, 35); // Adjust the delay as needed
+
+
+            // Clear user input
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+
+</html>

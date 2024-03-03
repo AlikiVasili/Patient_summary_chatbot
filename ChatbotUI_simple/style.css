@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: list-item;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 8px;
+    display: none;
+}
+
+#chat-history {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 300px;
+    border-bottom: 1px solid #ccc;
+}
+
+.message {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    clear: both;
+}
+
+.user-message {
+    justify-content: flex-end;
+}
+
+.bubble {
+    background-color: #e6f7ff;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.bot-message .bubble {
+    background-color: #d9ffd9;
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+@media screen and (max-width: 400px) {
+
+    /* Adjust styles for small screens */
+    #chat-container {
+        border-radius: 0;
+        /* No border-radius for small screens */
+    }
+
+    .bubble {
+        max-width: 100%;
+        /* Full width for small screens */
+    }
+}
+
+.loading-animation {
+display: inline-block;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+border: 2px solid #ccc;
+animation: loadingDots 1s infinite;
+}
+
+@keyframes loadingDots {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
