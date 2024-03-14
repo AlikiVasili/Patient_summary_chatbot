@@ -1,0 +1,7 @@
+In order to run the testing UI you have:
+1. Save in the bioBERT_model the bioBert_model.pth (If you do not have it run the script to fine-tune the bioBERT and save it inside this directory)
+2. Open and run the chatbot_app
+3. Open and run the webside
+
+The UI sends POST AJAX reguests to the flask app that you run through the chatbot_app.py and simulates a conversation.
+Instructions etc can be found inside the website.
