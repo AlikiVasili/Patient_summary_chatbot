@@ -1,0 +1,36 @@
+2024-03-12 15:22:56 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 15:23:06 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 15:28:20 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 15:28:25 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 16:11:23 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 16:11:31 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 16:11:39 - User: vaccinations	 Itent: vaccination
+
+2024-03-12 16:11:46 - User: implants	 Itent: not classify - implants or surgery
+
+2024-03-12 16:12:04 - User: Tell me my implants	 Itent: implants
+
+2024-03-12 16:12:15 - User: exit	 Itent: exit
+
+2024-03-14 14:22:56 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:23:19 - User: Can you please tell me my intolerances?	 Itent: intolerances
+
+2024-03-14 14:24:42 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:25:07 - User: Can you please tell me if i have any intolerances?	 Itent: intolerances
+
+2024-03-14 14:33:44 - User: Tell me my allergies and my surgeries	 Itent: not classify - surgery or allergies
+
+2024-03-14 14:34:23 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-14 14:36:40 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:36:56 - User: Do i have any surgery with implant?	 Itent: not classify - surgery or implants
+
