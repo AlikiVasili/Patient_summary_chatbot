@@ -401,9 +401,9 @@ def chat():
                         bot_response = "You have done the following vaccines:"
                         for entry in vaccines:
                             if entry['target_disease'] == None:
-                                bot_response += f"{i}. {entry['vaccine']}, Date and time: {entry['date']}, {entry['time']}"
+                                bot_response += f"\n{i}. {entry['vaccine']}, Date and time: {entry['date']}, {entry['time']}"
                             else:
-                                bot_response += f"{i}. {entry['vaccine']}, Date and time: {entry['date']}, {entry['time']} (Target Disease: {entry['target_disease']})"
+                                bot_response += f"\n{i}. {entry['vaccine']}, Date and time: {entry['date']}, {entry['time']} (Target Disease: {entry['target_disease']})"
                             i = i + 1
                     else:
                         # Print an error message
