@@ -120,13 +120,7 @@
 
 2024-03-26 13:36:47 - User: exit	 Itent: exit
 
-2024-04-25 17:04:03 - User: CY/Identity-M1-1111	 Itent: ID
+2024-04-26 02:22:06 - User: CY/Identity-MI-1111	 Itent: ID
 
-2024-04-25 17:06:27 - User: CY/Identity-M1-1111	 Itent: ID
-
-2024-04-25 17:11:47 - User: CY/Identity-M1-1111	 Itent: ID
-
-2024-04-25 17:14:59 - User: CY/Identity-M1-1111	 Itent: ID
-
-2024-04-25 17:20:49 - User: CY/Identity-M1-1111	 Itent: ID
+2024-04-26 02:22:22 - User: What are my allergies	 Itent: allergies
 

@@ -3,8 +3,7 @@ import requests
 import json
 
 PATIENT_IDENTIFIER_SYSTEM = "urn:oid:2.16.840.1.113883.3.9143.2.1.1"
-#PATIENT_IDENTIFIER_VALUE = "CY/Identity-MI-1111"
-GLOBAL_FHIR_URL = "http://dev-fhir.ehealth4u.eu/fhir/"
+GLOBAL_FHIR_URL = "https://dev-fhir.ehealth4u.eu/fhir/"
 KEYCLOAK_ACCESS_URL = "https://auth.3ahealth.com"
 KEYCLOAK_REALM = "ehealth4u"
 KEYCLOAK_TOKEN_PATH = "protocol/openid-connect/token"
@@ -12,9 +11,10 @@ KEYCLOAK_FULL_URL = f"{KEYCLOAK_ACCESS_URL}/realms/{KEYCLOAK_REALM}/{KEYCLOAK_TO
 KEYCLOAK_CLIENT_ID = "ehealth4u-ehr"
 KEYCLOAK_CLIENT_SECRET = "0ZV4EkWlX3PrX2oif9MZVTCBHZthXpQZ"
 KEYCLOAK_GRANT_TYPE = "password"
-KEYCLOAK_USERNAME = "drconstantinos"
-KEYCLOAK_PASSWORD = "drconstantinos"
+KEYCLOAK_USERNAME = "patient"
+KEYCLOAK_PASSWORD = "patient"
 KEYCLOAK_SCOPE = "fhir"
+
 
 def generateNewToken():
     # Define the body
@@ -37,19 +37,22 @@ def generateNewToken():
 
     return token
 
-def getPatientId(token,patient_identifier_value ):
+
+def getPatientId(token, patient_identifier_value):
     # Define the url
     url = GLOBAL_FHIR_URL + "Patient?identifier=" + PATIENT_IDENTIFIER_SYSTEM + "|" + patient_identifier_value
 
     # Try to get the patient id
     try:
         response = requests.get(url, headers={"Authorization": "Bearer " + token})
-        patientId = response.json()["entry"][0]["resource"]["id"]
+        responseAsJson = response.json()
+        patientId = responseAsJson["entry"][0]["resource"]["id"]
     except Exception as e:
         print("Error getting patient id: " + str(e))
         return
 
     return patientId
+
 
 def getPatientSummary(token, patientId):
     # Define the url
@@ -86,6 +89,7 @@ def main(patient_identifier_value):
 
     # Return the patientId
     return patientId
+
 
 if __name__ == "__main__":
     # Check if the PATIENT_IDENTIFIER_VALUE is provided as a command-line argument

@@ -1,3 +1,5 @@
+import sys
+
 from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 import ast
@@ -96,6 +98,7 @@ def chat():
 
         if "CY/" in user_message:
             id = True
+            python_executable = sys.executable
             program_path = './patient_summary_scripts/get_patient_summary.py'
             # the id of the user plus CY/ at the begining
             patient_identifier_value = user_message
@@ -105,7 +108,7 @@ def chat():
             # Use subprocess to run the program with the provided patient_identifier_value
             try:
                 # Capture the output using subprocess.PIPE
-                result = subprocess.run(['python', program_path, patient_identifier_value], check=True, capture_output=True, text=True)
+                result = subprocess.run([python_executable, program_path, patient_identifier_value], check=True, capture_output=True, text=True)
 
                 # Check if the subprocess was successful
                 if result.returncode == 0:
@@ -440,4 +443,4 @@ def chat():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(host='0.0.0.0', debug=True, port=8080,  use_reloader=False)
