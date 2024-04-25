@@ -71,7 +71,7 @@ def chat():
         try:
             subprocess.run(['python', 'save_feedback.py', feedback_type, feedback_text], capture_output=True, text=True)
         except subprocess.CalledProcessError as e:
-            print(f"Subprocess error: {e}")
+            return jsonify({'response': f"An error occurred: {e}"})
         return jsonify({'response': "Feedback saved okay"})
 
     else:
@@ -117,7 +117,6 @@ def chat():
                 else:
                     bot_response = "An error occurred while running the script."
             except subprocess.CalledProcessError as e:
-                # print(f"Subprocess error: {e}")
                 bot_response = f"An error occurred: {e}"
 
             if medical_id is None:
@@ -126,7 +125,6 @@ def chat():
                 # Read the JSON file with tha patient summary
                 with open('patientSummary.json') as f:
                     data = json.load(f)
-                    print(medical_id)
                     target_fullUrl = "urn:uuid:" + medical_id
 
                     # Find the entry with the specified fullUrl
@@ -190,7 +188,6 @@ def chat():
                 if predicted_intent == 'allergies':
                     # check if the user asked for a specific category
                     # Define category keywords
-                    print("Inside allergies")
                     allergy_category_keywords = {
                         "drug": ["drug", "drugs"],
                         "food": ["food", "foods"],
@@ -201,9 +198,8 @@ def chat():
                     # print the list of the allergies
                     try:
                         result = subprocess.run(['python', './patient_summary_scripts/get_allergies.py'], capture_output=True, text=True)
-                        print("subprocess run okay")
                     except subprocess.CalledProcessError as e:
-                        print(f"Subprocess error: {e}")
+                        bot_response = f"An error occurred: {e}"
                     # Check if the execution was successful
                     if result.returncode == 0:
                         # Safely evaluate the string as a literal to convert it to a list of dictionaries
@@ -349,7 +345,6 @@ def chat():
                                 else:
                                     bot_response += f"\n{i}. {entry['type_description']} in {entry['agent']}, Reaction: {entry['reaction']} (Clinical status: {entry['clinical_status']})"
                                     i = i + 1
-                        print("")
                     else:
                         # Print an error message
                         bot_response = "Error occurred while running the script."

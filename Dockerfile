@@ -4,7 +4,7 @@ FROM python:3.8-slim
 # Set the working directory in the container
 WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
+COPY requirements.txt requirements.txt
 
 # Install any needed dependencies specified in requirements.txt
 RUN pip install -r requirements.txt
@@ -19,4 +19,4 @@ EXPOSE 5000
 ENV FLASK_APP=chatbot_app.py
 
 # Run flask app when the container launches
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
