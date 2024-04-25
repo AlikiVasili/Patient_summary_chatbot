@@ -1,4 +1,0 @@
-In order to run the simple UI:
-1. open and run the chatbot app -> a flask localhost server will start 
-(in order to run it you will need a folder with all the scripts that get the information from teh patient summary and a folder with the bioBert_finetune.py and the saved model (boi_Bert.pth))
-2. Then you can run the index.html

@@ -1,0 +1,27 @@
+services:
+  server-flask:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    ports:
+      - "8081:5000"
+    networks:
+      - chatbot-net
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "80:80"
+    depends_on:
+      - server-flask
+    networks:
+      - chatbot-net
+
+networks:
+  chatbot-net:
+    driver: bridge
