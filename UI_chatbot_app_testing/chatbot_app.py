@@ -59,7 +59,7 @@ def chat():
         except subprocess.CalledProcessError as e:
             print(f"Subprocess error: {e}")
         return jsonify({'response': "Feedback saved okay"})
-        
+
     else:
         # Get the absolute path of the script
         script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -69,7 +69,7 @@ def chat():
         model.load_state_dict(torch.load(model_path))  # Load the saved model weights
 
         # Create a dictionary to map class indices to intent labels
-        # the encoding is alphabetic 
+        # the encoding is alphabetic
         class_to_intent = {0: 'allergies',1: 'current_problems', 2: 'exit',3: 'feeling', 4: 'hello',5: 'illness_history', 6: 'implants', 7: 'info', 8: 'intolerances', 9: 'prescription'
                         ,10: 'surgery', 11: 'vaccination'}
 
@@ -114,7 +114,7 @@ def chat():
                     data = json.load(f)
                     print(medical_id)
                     target_fullUrl = "urn:uuid:" + medical_id
-                                
+
                     # Find the entry with the specified fullUrl
                     target_entry = next((entry for entry in data.get("entry", []) if entry.get("fullUrl") == target_fullUrl), None)
 
@@ -148,7 +148,7 @@ def chat():
             # You can compare these probabilities to determine which one is more likely to be correct.
             probability_1 = probabilities[:, 0].item()
             probability_2 = probabilities[:, 1].item()
-                
+
             confidence_threshold = 0.7
             no_inent_class = None
 
@@ -295,7 +295,7 @@ def chat():
                                             "focal_devices_list": entry['focal_devices_list']
                                         })
                             i = i + 1
-                            
+
                         if implants:
                             i = 1
                             bot_response = "You have the following implants:"
@@ -419,7 +419,7 @@ def chat():
                     bot_response = "I am not quite sure that I understand what you want!"
                     bot_response += f'\nI am between {class_to_intent[no_inent_class.item()]} and {class_to_intent[predicted_class_2.item()]}. But I am more confident in {class_to_intent[no_inent_class.item()]}.'
                     bot_response += "\nCan you please give me another chance and ask me again what you are looking for in different words?"
-        
+
         # Log the conversation
         if id:
             log_conversation(user_message,"ID")
@@ -430,4 +430,4 @@ def chat():
         return jsonify({'response': bot_response})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
