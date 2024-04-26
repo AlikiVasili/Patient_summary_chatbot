@@ -1,0 +1,15 @@
+.git/
+.vscode/
+__pycache__/
+.idea
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+build/
+dist/
+*.egg-info/
+.installed.cfg
+*.egg
+artefacts/
