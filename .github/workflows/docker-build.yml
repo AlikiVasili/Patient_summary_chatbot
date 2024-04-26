@@ -23,20 +23,22 @@ jobs:
         username: avasil08
         password: dckr_pat_9vP5dVWomAugJGg_lc-FedkwA9M
 
+    - name: Extract short SHA
+      id: short-sha
+      run: echo "SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
         push: true
-        args:
-        entrypoint:
-        tags: docker.io/avasil08/ps-chatbot:${{ github.sha[:8] }}
+        tags: docker.io/avasil08/ps-chatbot:${{ env.SHORT_SHA }}
 
     - name: Update Kubernetes manifest
       run: |
-        sed -i "s|image: docker.io/avasil08/ps-chatbot:.*|image: docker.io/avasil08/ps-chatbot:${{ github.sha[:8] }}|" ./manifests/pschatbot-deployment.yaml
+        sed -i "s|image: docker.io/avasil08/ps-chatbot:.*|image: docker.io/avasil08/ps-chatbot:${{ env.SHORT_SHA }}|" ./manifests/pschatbot-deployment.yaml
 
     - name: Commit and push changes
       run: |
         git add ./manifests/pschatbot-deployment.yaml
-        git commit -m "Update image tag to ${{ github.sha[:8] }}"
+        git commit -m "Update image tag to ${{ env.SHORT_SHA }}"
         git push https://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@github.com/${{ github.repository }} HEAD:main
