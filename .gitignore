@@ -1,3 +1,2 @@
 .idea
-bioBert_model/bio_bert_classifier.pth
 bioBert_model/__pycache__
