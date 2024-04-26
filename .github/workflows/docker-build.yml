@@ -14,6 +14,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12.3'
+
+    - name: Cache Python packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          ${{ runner.os }}-
+
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
@@ -39,6 +56,8 @@ jobs:
 
     - name: Commit and push changes
       run: |
+        git config user.email "actions@github.com"
+        git config user.name "GitHub Actions Bot"
         git add ./manifests/pschatbot-deployment.yaml
         git commit -m "Update image tag to ${{ env.SHORT_SHA }}"
         git push https://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@github.com/${{ github.repository }} HEAD:main
