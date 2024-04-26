@@ -33,14 +33,5 @@ jobs:
         push: true
         tags: docker.io/avasil08/ps-chatbot:${{ env.SHORT_SHA }}
 
-    - name: Update Kubernetes manifest
-      run: |
-        sed -i "s|image: docker.io/avasil08/ps-chatbot:.*|image: docker.io/avasil08/ps-chatbot:${{ env.SHORT_SHA }}|" ./manifests/pschatbot-deployment.yaml
-
-    - name: Commit and push changes
-      run: |
-        git config user.email "actions@github.com"
-        git config user.name "GitHub Actions Bot"
-        git add ./manifests/pschatbot-deployment.yaml
-        git commit -m "Update image tag to ${{ env.SHORT_SHA }}"
-        git push https://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@github.com/${{ github.repository }} HEAD:main
+    - name: Print image tag
+      run: echo "Image Tag - docker.io/avasil08/ps-chatbot:${{ env.SHORT_SHA }}"

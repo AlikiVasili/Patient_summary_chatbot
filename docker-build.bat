@@ -3,7 +3,8 @@ SETLOCAL
 
 set REGISTRY=docker.io/avasil08
 set NAME=ps-chatbot
-set IMG=%REGISTRY%/%NAME%:acc.1.0.1
+for /f "delims=" %%a in ('git rev-parse --short HEAD') do set SHORT_SHA=%%a
+set IMG=%REGISTRY%/%NAME%:%SHORT_SHA%
 set LATEST=%REGISTRY%/%NAME%:%TAG%
 
 docker build -t %IMG% .
