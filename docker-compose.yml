@@ -1,0 +1,15 @@
+services:
+  chatbot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "8080:5000"
+    networks:
+      - chatbot-net
+
+networks:
+  chatbot-net:
+    driver: bridge

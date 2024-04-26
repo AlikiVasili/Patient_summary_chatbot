@@ -1,0 +1,126 @@
+2024-03-12 15:22:56 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 15:23:06 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 15:28:20 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 15:28:25 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 16:11:23 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-12 16:11:31 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-12 16:11:39 - User: vaccinations	 Itent: vaccination
+
+2024-03-12 16:11:46 - User: implants	 Itent: not classify - implants or surgery
+
+2024-03-12 16:12:04 - User: Tell me my implants	 Itent: implants
+
+2024-03-12 16:12:15 - User: exit	 Itent: exit
+
+2024-03-14 14:22:56 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:23:19 - User: Can you please tell me my intolerances?	 Itent: intolerances
+
+2024-03-14 14:24:42 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:25:07 - User: Can you please tell me if i have any intolerances?	 Itent: intolerances
+
+2024-03-14 14:33:44 - User: Tell me my allergies and my surgeries	 Itent: not classify - surgery or allergies
+
+2024-03-14 14:34:23 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-14 14:36:40 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-14 14:36:56 - User: Do i have any surgery with implant?	 Itent: not classify - surgery or implants
+
+2024-03-15 11:17:32 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-15 11:17:55 - User: Wat vaccinations do I have?	 Itent: vaccination
+
+2024-03-15 11:18:22 - User: Do i have any surgery in my history?	 Itent: surgery
+
+2024-03-15 11:18:42 - User: What about any implants that i may have?	 Itent: implants
+
+2024-03-15 11:18:58 - User: Do i have food allergies?	 Itent: allergies
+
+2024-03-15 11:19:20 - User: Do i have though any other allergy?	 Itent: allergies
+
+2024-03-15 11:19:43 - User: okay thank you so much	 Itent: not classify - hello or feeling
+
+2024-03-15 11:20:01 - User: No i said thank you	 Itent: not classify - hello or feeling
+
+2024-03-15 11:20:13 - User: thank you	 Itent: not classify - hello or exit
+
+2024-03-15 11:20:25 - User: exit	 Itent: exit
+
+2024-03-15 11:27:31 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-15 11:28:00 - User: Tell me if i have any vaccinations?	 Itent: vaccination
+
+2024-03-19 12:07:06 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-19 12:07:19 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-19 12:07:34 - User: tumors	 Itent: not classify - exit or surgery
+
+2024-03-19 12:08:29 - User: exit	 Itent: exit
+
+2024-03-19 12:09:07 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-19 12:09:44 - User: exit	 Itent: exit
+
+2024-03-20 12:04:50 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-20 12:05:44 - User: Tell me if I have any intolerances.	 Itent: intolerances
+
+2024-03-20 12:09:13 - User: Tell me my allergies and if I have done any surgeries	 Itent: not classify - surgery or allergies
+
+2024-03-20 12:10:47 - User: Do I have done any surgery with implant?	 Itent: not classify - surgery or implants
+
+2024-03-26 10:44:38 - User: CY/Identity-M1-1111	 Itent: ID
+
+2024-03-26 10:45:08 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-26 10:45:32 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-26 10:46:00 - User: Can you please tell me my food allergies?	 Itent: allergies
+
+2024-03-26 10:46:18 - User: What about allergies to substances?	 Itent: allergies
+
+2024-03-26 10:46:55 - User: What vaccines I have done?	 Itent: vaccination
+
+2024-03-26 10:47:13 - User: Do I have any implants?	 Itent: implants
+
+2024-03-26 10:47:26 - User: What about me prescription?	 Itent: prescription
+
+2024-03-26 10:47:40 - User: Thanks	 Itent: hello
+
+2024-03-26 10:47:49 - User: Exit	 Itent: exit
+
+2024-03-26 12:11:13 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-26 12:11:33 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-26 12:11:45 - User: Tell me my allergies	 Itent: allergies
+
+2024-03-26 12:11:56 - User: exit	 Itent: exit
+
+2024-03-26 13:33:40 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-03-26 13:34:18 - User: Do I have any food allergies?	 Itent: allergies
+
+2024-03-26 13:34:49 - User: What about any allergy to substance?	 Itent: allergies
+
+2024-03-26 13:35:33 - User: What vaccines do I have?	 Itent: vaccination
+
+2024-03-26 13:36:08 - User: How are you?	 Itent: feeling
+
+2024-03-26 13:36:29 - User: tumors	 Itent: not classify - surgery or exit
+
+2024-03-26 13:36:47 - User: exit	 Itent: exit
+
+2024-04-26 02:22:06 - User: CY/Identity-MI-1111	 Itent: ID
+
+2024-04-26 02:22:22 - User: What are my allergies	 Itent: allergies
+
