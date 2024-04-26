@@ -35,6 +35,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: pschatbot
+            name: pschatbot-service
             port:
               number: 5000
