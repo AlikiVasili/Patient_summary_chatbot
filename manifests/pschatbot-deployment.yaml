@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pschatbot
-        image: docker.io/3ahealth/ps-chatbot:acc.1.0.0
+        image: docker.io/avasil08/ps-chatbot:acc.1.0.0
         env:
         - name: FLASK_ENV
           value: "development"
