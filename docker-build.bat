@@ -3,7 +3,7 @@ SETLOCAL
 
 set REGISTRY=docker.io/avasil08
 set NAME=ps-chatbot
-set IMG=%REGISTRY%/%NAME%:acc.1.0.0
+set IMG=%REGISTRY%/%NAME%:acc.1.0.1
 set LATEST=%REGISTRY%/%NAME%:%TAG%
 
 docker build -t %IMG% .
