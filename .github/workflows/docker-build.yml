@@ -27,4 +27,16 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ${{ secrets.DOCKER_REGISTRY }}/ps-chatbot:${{ github.sha }}
+        tags: docker.io/avasil08/ps-chatbot:${{ github.sha }}
+
+    - name: Update Kubernetes manifest
+      run: |
+        sed -i "s|image: docker.io/avasil08/ps-chatbot:.*|image: docker.io/avasil08/ps-chatbot:${{ github.sha }}|" ./manifests/pschatbot-deployment.yaml
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ./manifests/pschatbot-deployment.yaml
+        git commit -m "Update image tag to ${{ github.sha }}"
+        git push
