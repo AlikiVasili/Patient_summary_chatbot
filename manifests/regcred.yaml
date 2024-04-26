@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+  namespace: pschatbot
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJodHRwczovL2luZGV4LmRvY2tlci5pby92MS8iOnsidXNlcm5hbWUiOiJhdmFzaWwwOCIsInBhc3N3b3JkIjoiZGNrcl9wYXRfaWVoZF9SUTdIRGsybzdpT1B3SmNDcERYeGRRIiwiZW1haWwiOiJ2YXNpbGkuYWxpa2lAdWN5LmFjLmN5IiwiYXV0aCI6IllYWmhjMmxzTURnNlpHTnJjbDl3WVhSZmFXVm9aRjlTVVRkSVJHc3liemRwVDFCM1NtTkRjRVJZZUdSUiJ9fX0=
