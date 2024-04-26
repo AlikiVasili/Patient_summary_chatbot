@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pschatbot-deployment
+  name: pschatbot
   namespace: pschatbot
 spec:
   replicas: 1
