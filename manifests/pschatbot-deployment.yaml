@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pschatbot
-        image: docker.io/avasil08/ps-chatbot:acc.1.0.2
+        image: docker.io/avasil08/ps-chatbot:acc.1.0.3
         env:
         - name: FLASK_ENV
           value: "development"
@@ -23,7 +23,7 @@ spec:
         - containerPort: 5000
         volumeMounts:
           - name: pschatbot-pvc
-            mountPath: /app
+            mountPath: /app/docs
 
       volumes:
         - name: pschatbot-pvc

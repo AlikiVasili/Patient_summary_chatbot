@@ -1,7 +1,7 @@
 import csv
 import sys
 
-def append_to_csv(feedback_type, feedback_text, csv_filename='feedback_data.csv'):
+def append_to_csv(feedback_type, feedback_text, csv_filename='docs/feedback_data.csv'):
     # Open the CSV file in append mode
     with open(csv_filename, 'a', newline='') as csvfile:
         # Create a CSV writer object

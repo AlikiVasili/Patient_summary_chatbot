@@ -16,8 +16,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Define the file path to save the conversation logs
-log_file_path = 'conversation_logs.txt'
-feedback_file_path = 'feedback_data.csv'
+log_file_path = 'docs/conversation_logs.txt'
+feedback_file_path = 'docs/feedback_data.csv'
 
 @app.route('/logs')
 def get_logs():
@@ -74,6 +74,7 @@ def find_allergy_category(user_input, category_keywords):
 def chat():
     user_message = request.json['message']
     if "CSV" in user_message:
+        python_executable = sys.executable
         feedback = user_message.split(" ")
         # Ensure that the input has at least three elements
         if len(feedback) >= 3 and feedback[0] == "CSV":
@@ -82,7 +83,7 @@ def chat():
             feedback_text = " ".join(feedback[2:])
         # print the list of the allergies
         try:
-            subprocess.run(['python', 'save_feedback.py', feedback_type, feedback_text], capture_output=True, text=True)
+            subprocess.run([python_executable, 'save_feedback.py', feedback_type, feedback_text], capture_output=True, text=True)
         except subprocess.CalledProcessError as e:
             return jsonify({'response': f"An error occurred: {e}"})
         return jsonify({'response': "Feedback saved okay"})
