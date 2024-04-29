@@ -1,6 +1,6 @@
 import sys
 
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, render_template, send_file, send_from_directory
 from flask_cors import CORS
 import ast
 import os
@@ -17,7 +17,18 @@ CORS(app)
 
 # Define the file path to save the conversation logs
 log_file_path = 'conversation_logs.txt'
+feedback_file_path = 'feedback_data.csv'
 
+@app.route('/logs')
+def get_logs():
+    abs_log_file_path = os.path.join(app.root_path, log_file_path)
+    return send_file(abs_log_file_path, as_attachment=True)
+
+# Endpoint to fetch feedback
+@app.route('/feedback')
+def get_feedback():
+    abs_feedback_file_path = os.path.join(app.root_path, feedback_file_path)
+    return send_file(abs_feedback_file_path, as_attachment=True)
 
 # Define index path to serve the index.html file
 @app.route('/')
