@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pschatbot
-        image: docker.io/avasil08/ps-chatbot:acc.1.0.3
+        image: docker.io/avasil08/ps-chatbot:acc.1.0.4
         imagePullPolicy: Always
         env:
         - name: FLASK_ENV
